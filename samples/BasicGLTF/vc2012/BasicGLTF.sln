@@ -1,0 +1,20 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2012 for Windows Desktop
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BasicGLTF", "BasicGLTF.vcxproj", "{F00C53C3-47C9-424C-842E-D39CD331C6BA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F00C53C3-47C9-424C-842E-D39CD331C6BA}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F00C53C3-47C9-424C-842E-D39CD331C6BA}.Debug|Win32.Build.0 = Debug|Win32
+		{F00C53C3-47C9-424C-842E-D39CD331C6BA}.Release|Win32.ActiveCfg = Release|Win32
+		{F00C53C3-47C9-424C-842E-D39CD331C6BA}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

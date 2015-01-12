@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="Blocks">
+      <UniqueIdentifier>{9E23B24E-0E60-4C0E-ACDA-0B5E438EB8A8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blocks\Cinder-glTF">
+      <UniqueIdentifier>{b031109c-9e19-486f-9671-0c80777f4f9c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blocks\Cinder-glTF\include">
+      <UniqueIdentifier>{36db8406-74aa-4c43-866d-5ff4def72400}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blocks\Cinder-glTF\src">
+      <UniqueIdentifier>{b880607a-7e64-48eb-bb50-ec5e29cbfa72}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\BasicGLTFApp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\BasicGLTFApp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClInclude Include="..\include\Resources.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\..\src\CinderGLTF.cpp">
+      <Filter>Blocks\Cinder-glTF\include</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\GLTFNode.cpp">
+      <Filter>Blocks\Cinder-glTF\include</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\ShaderPreprocessor.cpp">
+      <Filter>Blocks\Cinder-glTF\include</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\include\Resources.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\CinderGLTF.h">
+      <Filter>Blocks\Cinder-glTF\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\GLTFAnimation.h">
+      <Filter>Blocks\Cinder-glTF\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\GLTFBuffers.h">
+      <Filter>Blocks\Cinder-glTF\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\GLTFMesh.h">
+      <Filter>Blocks\Cinder-glTF\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\GLTFNode.h">
+      <Filter>Blocks\Cinder-glTF\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\GLTFShading.h">
+      <Filter>Blocks\Cinder-glTF\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\GLTFUtils.h">
+      <Filter>Blocks\Cinder-glTF\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\ShaderPreprocessor.h">
+      <Filter>Blocks\Cinder-glTF\src</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resources.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

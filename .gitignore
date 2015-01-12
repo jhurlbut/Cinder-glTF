@@ -1,28 +1,19 @@
-# Compiled Object files
-*.slo
-*.lo
-*.o
+# Finder
+.DS_Store
+
+# Xcode
+xcuserdata/
+!xcuserdata/default.*
+build/
+
+# Project
+lib/LibOVR
+*.tlog
+*.idb
+*.pdb
 *.obj
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
+samples/BasicOculus/vc2012/Debug/
+*.opensdf
+*.sdf
+*.log
+samples/BasicGLTF/vc2012/Debug/

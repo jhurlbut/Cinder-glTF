@@ -1,0 +1,211 @@
+#pragma once
+
+#include "cinder/app/app.h"
+#include "cinder/gl/Shader.h"
+#include "GLTFNode.h"
+#include "cinder/Timeline.h"
+namespace cinder {
+	namespace gltf {
+
+		typedef std::pair<std::string, ci::gl::TextureRef> NameTexturePair;
+		typedef std::pair<std::string, ci::vec4> NameValuePair;
+		typedef std::pair<std::string, ci::mat4> NameMatPair;
+		typedef std::map<std::string, GLenum> NameEnumMap;
+		class Param;
+		typedef std::shared_ptr<class Param>		ParamRef;
+		class Param
+		{
+		public:
+			static ParamRef	create() { return ParamRef(new Param()); }
+			Param(){};
+			GLint type;
+			int count;
+			bool valueBool;
+			ci::Anim<vec4> val;
+			ci::Anim<mat4> matval;
+			std::string matSource;
+			float valF;
+			std::string valS;
+			std::string semantic;
+		};
+
+		class Program;
+		typedef std::shared_ptr<class Program>		ProgramRef;
+		class Program
+		{
+		public:
+			static ProgramRef	create() { return ProgramRef(new Program()); }
+			Program(){};
+
+			gl::GlslProgRef shader;
+			std::map<std::string, std::string> attributes;
+			std::string vertShader;
+			std::string fragShader;
+
+		};
+		class InstanceProgram;
+		typedef std::shared_ptr<class InstanceProgram>		InstanceProgramRef;
+		class InstanceProgram
+		{
+		public:
+			static InstanceProgramRef	create() { return InstanceProgramRef(new InstanceProgram()); }
+			InstanceProgram(){};
+
+			ProgramRef program;
+			std::map<std::string, std::string> attributes;
+			std::map<std::string, std::string> uniforms;
+		};
+
+		class Technique;
+		typedef std::shared_ptr<class Technique>		TechniqueRef;
+		class Technique
+		{
+		public:
+			static TechniqueRef	create() { return TechniqueRef(new Technique()); }
+			Technique() : cullFaceEnable(false), blendEnable(true){};
+
+			InstanceProgramRef instanceProgram;
+			std::map<std::string, std::string> uniforms;
+			std::string name;
+			std::map<std::string, ParamRef> params;
+			bool blendEnable;
+			bool cullFaceEnable;
+			bool depthMask;
+			bool depthTestEnable;
+
+			void preDraw() const
+			{
+				
+
+			}
+			void postDraw()
+			{
+				//instanceProgram.program.shader->
+			}
+		};
+		
+		class Shader;
+		typedef std::shared_ptr<class Shader>		ShaderRef;
+		class Shader
+		{
+		public:
+			static ShaderRef	create() { return ShaderRef(new Shader()); }
+			Shader(){};
+
+			ci::DataSourceRef	data;
+			GLint				type;
+		};
+
+		class Material;
+		typedef std::shared_ptr<class Material>		MaterialRef;
+		class Material
+		{
+		public:
+			static MaterialRef	create() { return MaterialRef(new Material()); }
+			Material(){ 
+				mUseTextures = false;
+				curLevel = 0;
+			};
+			std::string name;
+			TechniqueRef pTechnique;
+			TechniqueRef pTechInstance;
+			// vector of Texture ref
+			std::vector<NameTexturePair> textures;
+			std::map<std::string, NodeRef> matrices;
+			int curLevel;
+			bool mUseTextures;
+			gl::GlslProgRef shader;
+			void preDraw(std::vector<ci::mat4> rotMats, std::vector<ci::mat4> pTrans, std::vector<ci::mat4> scales){
+				
+				curLevel++;
+				if (mUseTextures){
+					GLuint texSlot = 0;
+					for (NameTexturePair& pair : textures)
+					{
+						pair.second->bind(texSlot);
+						GLint loc = pTechnique->instanceProgram->program->shader->getUniformLocation(pair.first);
+						glUniform1i(loc, texSlot);
+						texSlot++;
+					}
+					
+				}
+				InstanceProgramRef ipg = pTechnique->instanceProgram;
+				shader->bind();
+
+				for (auto pair : ipg->uniforms)
+				{
+					GLint type;
+					float val;
+					vec4 val4;
+					NodeRef node;
+					
+					type = pTechnique->params[pair.first]->type;
+					if (pTechInstance->params[pair.first]){
+						val = pTechInstance->params[pair.first]->valF;
+						val4 = pTechInstance->params[pair.first]->val;
+
+					}
+					else {
+						val = pTechnique->params[pair.first]->valF;
+						val4 = pTechnique->params[pair.first]->val;
+					}
+					
+					if (type == GL_FLOAT_MAT4)
+						node = matrices[pTechnique->params[pair.first]->matSource];
+				
+					/*if (pTechInstance->params[pair.first]){
+
+						val = pTechInstance->params[pair.first]->valF;
+						val4 = pTechInstance->params[pair.first]->val;
+						if (type == GL_FLOAT_MAT4)
+							node = matrices[pTechInstance->params[pair.first]->matSource];
+					}*/
+					std::string name = pair.second;
+					if (type == GL_FLOAT){
+						shader->uniform(pair.second, val);
+					}
+					if (type == GL_FLOAT_VEC4){
+						shader->uniform(pair.second, val4);
+					}
+					if (type == GL_FLOAT_VEC3){
+						shader->uniform(pair.second, vec3(val4.x, val4.y, val4.z));
+					}
+					if (type == GL_FLOAT_VEC2){
+						shader->uniform(pair.second, vec2(val4.x, val4.y));
+					}
+					if (type == GL_FLOAT_MAT4){
+							
+						if (node){
+							auto mat = node->matrix;
+							if (pair.second == "uModelInverseTransposeLightMatrix"){
+								mat = glm::inverseTranspose(mat);
+							}
+							shader->uniform(pair.second, mat);
+						}
+					}
+				
+				}
+				//matrix xforms
+				/*int count = rotMats.size();
+				if (count>0){
+					shader->uniform("rotMats", &rotMats[0],rotMats.size());
+					shader->uniform("trans", &pTrans[0], pTrans.size());
+					shader->uniform("scales", &scales[0], scales.size());
+				}
+				shader->uniform("numLevels", count);
+				pTechnique->preDraw();*/
+
+			}
+			void postDraw()
+			{
+				GLuint texSlot = 0;
+				for (NameTexturePair& pair : textures)
+				{
+					pair.second->unbind(texSlot);
+					texSlot++;
+				}
+
+			}
+		};
+	}
+}

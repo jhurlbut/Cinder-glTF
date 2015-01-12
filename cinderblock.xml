@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<cinder>
+<block
+    name="Cinder-glTF"
+    id="net.jameshurlbut.CinderglTF"
+    git="https://github.com/jhurlbut/Cinder-glTF.git"
+    author="James Hurlbut"
+    summary="GLTF for Cinder"
+    url="https://github.com/jhurlbut/Cinder-glTF"
+    >
+    <supports os="macosx" />
+    <supports os="msw" />
+    <headerPattern>include/*.h</headerPattern>
+    <sourcePattern>src/*.cpp</sourcePattern>
+    <includePath system="true">include</includePath>
+  <includePath system="true">src</includePath>
+    <platform os="macosx">
+        <platform config="debug">
+            
+        </platform>
+        <platform config="release">
+           
+        </platform>
+        <framework sdk="true">IOKit.framework</framework>
+        <framework sdk="true">IOSurface.framework</framework>
+    </platform>
+    <platform os="msw">
+        <!--
+          without an arch attribute we cannot support Win32 and x64 with the same block, see:
+            https://forum.libcinder.org/topic/cinder-block-xml-specify-architecture
+        -->
+        <platform config="debug" compiler="vc2012">
+           
+        </platform>
+        <platform config="release" compiler="vc2012">
+           
+        </platform>
+        <platform config="debug" compiler="vc2013">
+           
+        </platform>
+        <platform config="release" compiler="vc2013">
+           
+        </platform>
+        <staticLibrary absolute="true">Winmm.lib</staticLibrary>
+    </platform>
+    <copyExclude>samples</copyExclude>
+</block>
+</cinder>
