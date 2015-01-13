@@ -11,7 +11,7 @@ uniform sampler2D u_diffuse;
 uniform vec4 u_emission;
 uniform vec4 u_specular;
 uniform float u_shininess;
-varying vec3 v_light0Direction;
+in vec3 v_light0Direction;
 uniform vec3 u_light0Color;
 uniform vec4 u_ambient;
 
@@ -25,7 +25,7 @@ void main(void) {
 	vec4 specular;
 	ambient = u_ambient;
 
-	diffuse = texture2D(u_diffuse, vec2(TexCoord.s,-TexCoord.t));
+	diffuse = texture(u_diffuse, vec2(TexCoord.s,-TexCoord.t));
 	emission = u_emission;
 	specular = u_specular;
 	vec3 specularLight = vec3(0., 0., 0.);
