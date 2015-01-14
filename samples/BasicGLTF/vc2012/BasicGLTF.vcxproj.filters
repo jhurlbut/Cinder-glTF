@@ -37,13 +37,13 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClCompile Include="..\..\..\src\CinderGLTF.cpp">
-      <Filter>Blocks\Cinder-glTF\include</Filter>
+      <Filter>Blocks\Cinder-glTF\src</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\src\GLTFNode.cpp">
-      <Filter>Blocks\Cinder-glTF\include</Filter>
+      <Filter>Blocks\Cinder-glTF\src</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\src\ShaderPreprocessor.cpp">
-      <Filter>Blocks\Cinder-glTF\include</Filter>
+      <Filter>Blocks\Cinder-glTF\src</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -51,28 +51,28 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\include\CinderGLTF.h">
-      <Filter>Blocks\Cinder-glTF\src</Filter>
+      <Filter>Blocks\Cinder-glTF\include</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\include\GLTFAnimation.h">
-      <Filter>Blocks\Cinder-glTF\src</Filter>
+      <Filter>Blocks\Cinder-glTF\include</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\include\GLTFBuffers.h">
-      <Filter>Blocks\Cinder-glTF\src</Filter>
+      <Filter>Blocks\Cinder-glTF\include</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\include\GLTFMesh.h">
-      <Filter>Blocks\Cinder-glTF\src</Filter>
+      <Filter>Blocks\Cinder-glTF\include</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\include\GLTFNode.h">
-      <Filter>Blocks\Cinder-glTF\src</Filter>
+      <Filter>Blocks\Cinder-glTF\include</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\include\GLTFShading.h">
-      <Filter>Blocks\Cinder-glTF\src</Filter>
+      <Filter>Blocks\Cinder-glTF\include</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\include\GLTFUtils.h">
-      <Filter>Blocks\Cinder-glTF\src</Filter>
+      <Filter>Blocks\Cinder-glTF\include</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\include\ShaderPreprocessor.h">
-      <Filter>Blocks\Cinder-glTF\src</Filter>
+      <Filter>Blocks\Cinder-glTF\include</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
