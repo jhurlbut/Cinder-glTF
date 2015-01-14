@@ -1,0 +1,411 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 44;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		006D720419952D00008149E2 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 006D720219952D00008149E2 /* AVFoundation.framework */; };
+		006D720519952D00008149E2 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 006D720319952D00008149E2 /* CoreMedia.framework */; };
+		0091D8F90E81B9330029341E /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0091D8F80E81B9330029341E /* OpenGL.framework */; };
+		00B784B30FF439BC000DE1D7 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784AF0FF439BC000DE1D7 /* Accelerate.framework */; };
+		00B784B40FF439BC000DE1D7 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784B00FF439BC000DE1D7 /* AudioToolbox.framework */; };
+		00B784B50FF439BC000DE1D7 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784B10FF439BC000DE1D7 /* AudioUnit.framework */; };
+		00B784B60FF439BC000DE1D7 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784B20FF439BC000DE1D7 /* CoreAudio.framework */; };
+		5323E6B20EAFCA74003A9687 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B10EAFCA74003A9687 /* CoreVideo.framework */; };
+		5323E6B60EAFCA7E003A9687 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B50EAFCA7E003A9687 /* QTKit.framework */; };
+		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		4F0D9918CB2A4AE3886D4640 /* IOSurface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 883701459B194A0AA9608F9B /* IOSurface.framework */; };
+		497CF66800EA46109AEBB528 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E3531BB84B0463A8064A0C1 /* IOKit.framework */; };
+		B05B4BED888A4F09B4D03C1F /* ShaderPreprocessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3240616F1E084C6692839868 /* ShaderPreprocessor.cpp */; };
+		5FF73166339741849751C6B7 /* GLTFNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 19EB6D947F0B4D819ABB7C84 /* GLTFNode.cpp */; };
+		BC8B5CE680304F3A8C0B69D3 /* CinderGLTF.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAE822A0BF724D65A4C78A6E /* CinderGLTF.cpp */; };
+		63C78A24A1E24CDE872AD71D /* ShaderPreprocessor.h in Headers */ = {isa = PBXBuildFile; fileRef = 93967EC577254E0A9546355D /* ShaderPreprocessor.h */; };
+		701E74BC311C46F98D57FD66 /* GLTFUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = D4BED968CBC0497C816A968C /* GLTFUtils.h */; };
+		3266C9532FDB462A803F198C /* GLTFShading.h in Headers */ = {isa = PBXBuildFile; fileRef = C64240C966484CDC8D78BCEE /* GLTFShading.h */; };
+		C36D9EB9A3C14EF2B722A95E /* GLTFNode.h in Headers */ = {isa = PBXBuildFile; fileRef = F14C7AFCB43E451F9FCA7B64 /* GLTFNode.h */; };
+		2B325502590D41C58543E652 /* GLTFMesh.h in Headers */ = {isa = PBXBuildFile; fileRef = AEC4973466AC46619E4701BE /* GLTFMesh.h */; };
+		986A3952763B4E89B2CB61B7 /* GLTFBuffers.h in Headers */ = {isa = PBXBuildFile; fileRef = 3544B2462E2F4E3DB9908B63 /* GLTFBuffers.h */; };
+		1A16AE4788A14076A7EE310C /* GLTFAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 39FBC2B0AC9F46E3A05D52D8 /* GLTFAnimation.h */; };
+		38C987EB8A3F4AAFA5D6F9CA /* CinderGLTF.h in Headers */ = {isa = PBXBuildFile; fileRef = B47FF4E1669049BFAC781F4B /* CinderGLTF.h */; };
+		5ACF393C36AD4FC78068D051 /* BasicGLTF_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = A36D361B02734D3C97FFE6AF /* BasicGLTF_Prefix.pch */; };
+		75C0A8A5CCCD4FACB49620F9 /* CinderApp.icns in Resources */ = {isa = PBXBuildFile; fileRef = 771E206B1FD54308B54417AB /* CinderApp.icns */; };
+		55E087C0926C4FE392BAEE83 /* Resources.h in Headers */ = {isa = PBXBuildFile; fileRef = 86F2A7A4CE854B1480D428AB /* Resources.h */; };
+		3A348DAD560C4BA3A76220FF /* BasicGLTFApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C24B5429F8A441ACA0F9F4ED /* BasicGLTFApp.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		006D720219952D00008149E2 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		006D720319952D00008149E2 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		0091D8F80E81B9330029341E /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = /System/Library/Frameworks/OpenGL.framework; sourceTree = "<absolute>"; };
+		00B784AF0FF439BC000DE1D7 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		00B784B00FF439BC000DE1D7 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		00B784B10FF439BC000DE1D7 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
+		00B784B20FF439BC000DE1D7 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		5323E6B10EAFCA74003A9687 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = /System/Library/Frameworks/CoreVideo.framework; sourceTree = "<absolute>"; };
+		5323E6B50EAFCA7E003A9687 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = /System/Library/Frameworks/QTKit.framework; sourceTree = "<absolute>"; };
+		8D1107320486CEB800E47090 /* BasicGLTF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BasicGLTF.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C24B5429F8A441ACA0F9F4ED /* BasicGLTFApp.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; path = ../src/BasicGLTFApp.cpp; sourceTree = "<group>"; name = BasicGLTFApp.cpp; };
+		86F2A7A4CE854B1480D428AB /* Resources.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ../include/Resources.h; sourceTree = "<group>"; name = Resources.h; };
+		771E206B1FD54308B54417AB /* CinderApp.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = ../resources/CinderApp.icns; sourceTree = "<group>"; name = CinderApp.icns; };
+		E466BCCF38ED40DB83C63A0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; name = Info.plist; };
+		A36D361B02734D3C97FFE6AF /* BasicGLTF_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = "\"\""; path = BasicGLTF_Prefix.pch; sourceTree = "<group>"; name = BasicGLTF_Prefix.pch; };
+		B47FF4E1669049BFAC781F4B /* CinderGLTF.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ../../../include/CinderGLTF.h; sourceTree = "<group>"; name = CinderGLTF.h; };
+		39FBC2B0AC9F46E3A05D52D8 /* GLTFAnimation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ../../../include/GLTFAnimation.h; sourceTree = "<group>"; name = GLTFAnimation.h; };
+		3544B2462E2F4E3DB9908B63 /* GLTFBuffers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ../../../include/GLTFBuffers.h; sourceTree = "<group>"; name = GLTFBuffers.h; };
+		AEC4973466AC46619E4701BE /* GLTFMesh.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ../../../include/GLTFMesh.h; sourceTree = "<group>"; name = GLTFMesh.h; };
+		F14C7AFCB43E451F9FCA7B64 /* GLTFNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ../../../include/GLTFNode.h; sourceTree = "<group>"; name = GLTFNode.h; };
+		C64240C966484CDC8D78BCEE /* GLTFShading.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ../../../include/GLTFShading.h; sourceTree = "<group>"; name = GLTFShading.h; };
+		D4BED968CBC0497C816A968C /* GLTFUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ../../../include/GLTFUtils.h; sourceTree = "<group>"; name = GLTFUtils.h; };
+		93967EC577254E0A9546355D /* ShaderPreprocessor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ../../../include/ShaderPreprocessor.h; sourceTree = "<group>"; name = ShaderPreprocessor.h; };
+		FAE822A0BF724D65A4C78A6E /* CinderGLTF.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; path = ../../../src/CinderGLTF.cpp; sourceTree = "<group>"; name = CinderGLTF.cpp; };
+		19EB6D947F0B4D819ABB7C84 /* GLTFNode.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; path = ../../../src/GLTFNode.cpp; sourceTree = "<group>"; name = GLTFNode.cpp; };
+		3240616F1E084C6692839868 /* ShaderPreprocessor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; path = ../../../src/ShaderPreprocessor.cpp; sourceTree = "<group>"; name = ShaderPreprocessor.cpp; };
+		4E3531BB84B0463A8064A0C1 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; name = IOKit.framework; };
+		883701459B194A0AA9608F9B /* IOSurface.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = System/Library/Frameworks/IOSurface.framework; sourceTree = SDKROOT; name = IOSurface.framework; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8D11072E0486CEB800E47090 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				006D720419952D00008149E2 /* AVFoundation.framework in Frameworks */,
+				006D720519952D00008149E2 /* CoreMedia.framework in Frameworks */,
+				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
+				0091D8F90E81B9330029341E /* OpenGL.framework in Frameworks */,
+				5323E6B20EAFCA74003A9687 /* CoreVideo.framework in Frameworks */,
+				5323E6B60EAFCA7E003A9687 /* QTKit.framework in Frameworks */,
+				00B784B30FF439BC000DE1D7 /* Accelerate.framework in Frameworks */,
+				00B784B40FF439BC000DE1D7 /* AudioToolbox.framework in Frameworks */,
+				00B784B50FF439BC000DE1D7 /* AudioUnit.framework in Frameworks */,
+				00B784B60FF439BC000DE1D7 /* CoreAudio.framework in Frameworks */,
+				497CF66800EA46109AEBB528 /* IOKit.framework in Frameworks */,
+				4F0D9918CB2A4AE3886D4640 /* IOSurface.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				C24B5429F8A441ACA0F9F4ED /* BasicGLTFApp.cpp */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				006D720219952D00008149E2 /* AVFoundation.framework */,
+				006D720319952D00008149E2 /* CoreMedia.framework */,
+				00B784AF0FF439BC000DE1D7 /* Accelerate.framework */,
+				00B784B00FF439BC000DE1D7 /* AudioToolbox.framework */,
+				00B784B10FF439BC000DE1D7 /* AudioUnit.framework */,
+				00B784B20FF439BC000DE1D7 /* CoreAudio.framework */,
+				5323E6B50EAFCA7E003A9687 /* QTKit.framework */,
+				5323E6B10EAFCA74003A9687 /* CoreVideo.framework */,
+				0091D8F80E81B9330029341E /* OpenGL.framework */,
+				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
+			);
+			name = "Linked Frameworks";
+			sourceTree = "<group>";
+		};
+		1058C7A2FEA54F0111CA2CBB /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
+				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8D1107320486CEB800E47090 /* BasicGLTF.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* BasicGLTF */ = {
+			isa = PBXGroup;
+			children = (
+				01B97315FEAEA392516A2CEA /* Blocks */,
+				29B97315FDCFA39411CA2CEA /* Headers */,
+				080E96DDFE201D6D7F000001 /* Source */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = BasicGLTF;
+			sourceTree = "<group>";
+		};
+		E06237CF44F04098ADF675D5 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				B47FF4E1669049BFAC781F4B /* CinderGLTF.h */,
+				39FBC2B0AC9F46E3A05D52D8 /* GLTFAnimation.h */,
+				3544B2462E2F4E3DB9908B63 /* GLTFBuffers.h */,
+				AEC4973466AC46619E4701BE /* GLTFMesh.h */,
+				F14C7AFCB43E451F9FCA7B64 /* GLTFNode.h */,
+				C64240C966484CDC8D78BCEE /* GLTFShading.h */,
+				D4BED968CBC0497C816A968C /* GLTFUtils.h */,
+				93967EC577254E0A9546355D /* ShaderPreprocessor.h */,
+			);
+			name = include;
+			sourceTree = "<group>";
+		};
+		A7177445237E419AA59C6E5D /* src */ = {
+			isa = PBXGroup;
+			children = (
+				FAE822A0BF724D65A4C78A6E /* CinderGLTF.cpp */,
+				19EB6D947F0B4D819ABB7C84 /* GLTFNode.cpp */,
+				3240616F1E084C6692839868 /* ShaderPreprocessor.cpp */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
+		B629F0F570364A80A29BB061 /* Cinder-glTF */ = {
+			isa = PBXGroup;
+			children = (
+				E06237CF44F04098ADF675D5 /* include */,
+				A7177445237E419AA59C6E5D /* src */,
+			);
+			name = "Cinder-glTF";
+			sourceTree = "<group>";
+		};
+		01B97315FEAEA392516A2CEA /* Blocks */ = {
+			isa = PBXGroup;
+			children = (
+				B629F0F570364A80A29BB061 /* Cinder-glTF */,
+			);
+			name = Blocks;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				86F2A7A4CE854B1480D428AB /* Resources.h */,
+				A36D361B02734D3C97FFE6AF /* BasicGLTF_Prefix.pch */,
+			);
+			name = Headers;
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				771E206B1FD54308B54417AB /* CinderApp.icns */,
+				E466BCCF38ED40DB83C63A0B /* Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
+				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
+				4E3531BB84B0463A8064A0C1 /* IOKit.framework */,
+				883701459B194A0AA9608F9B /* IOSurface.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8D1107260486CEB800E47090 /* BasicGLTF */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "BasicGLTF" */;
+			buildPhases = (
+				8D1107290486CEB800E47090 /* Resources */,
+				8D11072C0486CEB800E47090 /* Sources */,
+				8D11072E0486CEB800E47090 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BasicGLTF;
+			productInstallPath = "$(HOME)/Applications";
+			productName = BasicGLTF;
+			productReference = 8D1107320486CEB800E47090 /* BasicGLTF.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "BasicGLTF" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = 29B97314FDCFA39411CA2CEA /* BasicGLTF */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8D1107260486CEB800E47090 /* BasicGLTF */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8D1107290486CEB800E47090 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				75C0A8A5CCCD4FACB49620F9 /* CinderApp.icns in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8D11072C0486CEB800E47090 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A348DAD560C4BA3A76220FF /* BasicGLTFApp.cpp in Sources */,
+				BC8B5CE680304F3A8C0B69D3 /* CinderGLTF.cpp in Sources */,
+				5FF73166339741849751C6B7 /* GLTFNode.cpp in Sources */,
+				B05B4BED888A4F09B4D03C1F /* ShaderPreprocessor.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		C01FCF4B08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = BasicGLTF_Prefix.pch;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = "\"$(CINDER_PATH)/lib/libcinder_d.a\"";
+				PRODUCT_NAME = BasicGLTF;
+				WRAPPER_EXTENSION = app;
+				SYMROOT = ./build;
+			};
+			name = Debug;
+		};
+		C01FCF4C08A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_FAST_MATH = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"NDEBUG=1",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = BasicGLTF_Prefix.pch;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = "\"$(CINDER_PATH)/lib/libcinder.a\"";
+				PRODUCT_NAME = BasicGLTF;
+				STRIP_INSTALLED_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+				SYMROOT = ./build;
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = x86_64;
+				CINDER_PATH = "../../../../..";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"\"$(CINDER_PATH)/boost\"",
+					../../../include,
+					../../../src,
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\" ../include";
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = x86_64;
+				CINDER_PATH = "../../../../..";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"\"$(CINDER_PATH)/boost\"",
+					../../../include,
+					../../../src,
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\" ../include";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "BasicGLTF" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4B08A954540054247B /* Debug */,
+				C01FCF4C08A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "BasicGLTF" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}

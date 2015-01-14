@@ -344,7 +344,7 @@ namespace cinder {
 				string path = buf["uri"].getValue();
 				auto pth = "models/" + buf.getKey() + "/" + path;
 				console() << "key " << buf.getKey() << endl;
-				DataSourceRef& dataSrc = ci::app::loadAsset(pth);
+				DataSourceRef dataSrc = ci::app::loadAsset(pth);
 				if (dataSrc->getBuffer().getDataSize() != byteLength)
 				{
 					console() << buf.getKey() << ": byteLength mismatch." << endl;

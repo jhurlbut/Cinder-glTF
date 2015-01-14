@@ -40,6 +40,7 @@
 #include "cinder/gl/Shader.h"
 #include "GLTFNode.h"
 #include "cinder/Timeline.h"
+#include "cinder/gl/Texture.h"
 namespace cinder {
 	namespace gltf {
 
