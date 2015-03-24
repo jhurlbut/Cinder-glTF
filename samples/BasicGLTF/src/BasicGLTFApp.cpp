@@ -35,7 +35,7 @@
  */
 
 
-#include "cinder/app/AppNative.h"
+#include "cinder/app/App.h"
 #include "cinder/app/RendererGl.h"
 #include "cinder/gl/gl.h"
 #include "CinderGLTF.h"
@@ -73,7 +73,7 @@ struct LightData {
     vec3						target;
 };
 
-class BasicGLTFApp : public AppNative {
+class BasicGLTFApp : public App {
 public:
     void setup() override;
     void mouseDown(MouseEvent event) override;
@@ -123,9 +123,9 @@ void BasicGLTFApp::setup()
     mParams->addSeparator();
     mParams->addText("Lights");
     
-    /*mParams->addParam("Direct Light Color", &mLightColor).updateFn([&]{
+    mParams->addParam("Direct Light Color", &mLightColor).updateFn([&]{
      gltfmesh->mTechniques["technique1"]->params["light0Color"]->val = vec4(mLightColor.r, mLightColor.g, mLightColor.b, 0.f);
-     });*/
+     });
     
 }
 
@@ -163,7 +163,6 @@ void BasicGLTFApp::draw()
     gl::enableDepthRead();
     gl::enableDepthWrite();
     gl::scale(vec3(.1f));
-    //gl::rotate(ci::app::getElapsedSeconds() / 15.f, 0, 1, 0);
     try{
         gltfmesh->draw();
     }
@@ -175,4 +174,4 @@ void BasicGLTFApp::draw()
     mParams->draw();
 }
 
-CINDER_APP_NATIVE(BasicGLTFApp, RendererGl)
+CINDER_APP(BasicGLTFApp, RendererGl);

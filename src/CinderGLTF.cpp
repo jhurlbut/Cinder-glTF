@@ -369,7 +369,7 @@ namespace cinder {
 
 			for (const JsonTree& prog : tree.getChildren())
 			{
-				ShaderPreprocessor pp;
+				cinder::gl::ShaderPreprocessor pp;
 				//mAttributes[i] = gl::Vao::create();
 				ProgramRef pgm = Program::create();
 				pgm->vertShader = prog["vertexShader"].getValue<string>();
@@ -386,7 +386,7 @@ namespace cinder {
 						);
 
 				}
-				catch (ShaderPreprocessorExc err){
+				catch (cinder::gl::ShaderPreprocessorExc err){
 					console() << "ShaderPreprocessorExc error what " << err.what() << endl;
 					exit(-1);
 				}
