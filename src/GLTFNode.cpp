@@ -57,7 +57,7 @@ namespace cinder {
 					
 					if (numInstances == 0){
 						gl::pushModelView();
-						matrix = glm::scale(scale)* rotmat;
+						matrix = rotmat * glm::scale(scale);
 						matrix[3] = vec4(trans,1);
 						gl::multModelMatrix(matrix);
 
