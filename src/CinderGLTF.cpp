@@ -62,9 +62,7 @@ namespace cinder {
 
 		{
 			mNumInstances = numInstances;
-			std::shared_ptr<CinderGLTF> p(this);
-			pRef = p.get()->shared_from_this();
-
+			
 			mModelName = dataSource->getFilePath().parent_path().filename().replace_extension("").string();
 
 			mVAO = gl::Vao::create();
@@ -188,9 +186,9 @@ namespace cinder {
 		}
 		void CinderGLTF::draw(){
 			//gl::drawCube(vec3(0, 0, 0), vec3(40.4, 40.4, 40.4));
-			auto ctx = gl::Context::getCurrent();
-
+			
 			gl::ScopedVao vao(mVAO);
+			gl::ScopedMatrices();
 			gl::enableDepthRead();
 			gl::enableDepthWrite();
 			//gl::ScopedVao source(mVAO);

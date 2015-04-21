@@ -167,8 +167,8 @@ namespace cinder {
 					
 				}
 				InstanceProgramRef ipg = pTechnique->instanceProgram;
-				shader->bind();
-
+				
+				ci::gl::Context::getCurrent()->pushGlslProg(shader);
 				for (auto pair : ipg->uniforms)
 				{
 					GLint type;
@@ -235,6 +235,7 @@ namespace cinder {
 			}
 			void postDraw()
 			{
+				ci::gl::Context::getCurrent()->popGlslProg();
 				GLuint texSlot = 0;
 				for (NameTexturePair& pair : textures)
 				{

@@ -71,7 +71,7 @@ namespace cinder {
 				//double t1 = ci::app::getElapsedSeconds();
 				//ci::app::console() << (t1 - t0) * 1000 << ":"<<pMaterial->name <<": predraw time " << std::endl;
 				auto ctx = ci::gl::Context::getCurrent();
-				auto curGlslProg = ctx->getGlslProg();
+				auto curGlslProg = pMaterial->shader;
 				if (numInstances > 0){
 					int loc = curGlslProg->getAttribSemanticLocation(geom::Attrib::CUSTOM_0);
 					if (loc != -1){
