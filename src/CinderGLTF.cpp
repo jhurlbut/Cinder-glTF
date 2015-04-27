@@ -61,6 +61,7 @@ namespace cinder {
 		CinderGLTF::CinderGLTF(DataSourceRef dataSource, int numInstances)
 
 		{
+			mNodes = std::make_shared<NodeMap>();
 			mNumInstances = numInstances;
 			
 			mModelName = dataSource->getFilePath().parent_path().filename().replace_extension("").string();
@@ -604,7 +605,7 @@ namespace cinder {
 
 					}
 					if (prm->type == GL_FLOAT_MAT4){
-						NodeRef node = mNodes[value["source"].getValue<string>()];
+						NodeRef node = mNodes->at(value["source"].getValue<string>());
 						ci::mat4 matrix = node->matrix;
 						prm->matval = matrix;
 						param->matval = matrix;
@@ -718,19 +719,19 @@ namespace cinder {
 					node->bounds = ci::AxisAlignedBox3f(vec3(0),vec3(0));
 
 				}
-				if (!mNodes[node->name]){
-					mNodes[node->name] = node;
+				if (mNodes->find(node->name) == mNodes->end()){
+					mNodes->insert({ node->name, node });
 				}
 				{
 					console() << "dupe node found: " << node->name << endl;
 				}
 			}
 			for (const JsonTree& nodejson : tree.getChildren()){
-				NodeRef node = mNodes[nodejson.getKey()];
+				NodeRef node = mNodes->at(nodejson.getKey());
 
 				for (const JsonTree& child : nodejson["children"].getChildren())
 				{
-					node->pChildren.push_back(mNodes[child.getValue()]);
+					node->pChildren.push_back(mNodes->at(child.getValue()));
 				}
 
 			}
@@ -743,7 +744,7 @@ namespace cinder {
 				mNodeNames.push_back(kAllNodeName);
 				for (const JsonTree& node : scenejson["nodes"].getChildren())
 				{
-					scene->pNodes.push_back(mNodes[node.getValue()]);
+					scene->pNodes.push_back(mNodes->at(node.getValue()));
 					mNodeNames.push_back(node.getValue());
 				}
 
@@ -857,7 +858,7 @@ namespace cinder {
 						string samplerName = chan.getChild("sampler").getValue<string>();
 						string targetNode = chan.getChild("target").getChild("id").getValue<string>();
 						ch->sampler = anim->mSamplers[samplerName];
-						ch->target = mNodes[targetNode];
+						ch->target = mNodes->at(targetNode);
 						string tPath = chan.getChild("target").getChild("path").getValue<string>();
 						AnimTypes path;
 						if (tPath == "scale")

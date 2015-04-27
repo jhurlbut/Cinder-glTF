@@ -144,7 +144,7 @@ namespace cinder {
 		std::map<std::string, MaterialRef>                   mMaterials;
 		std::map<std::string, AccessorRef>                      mAccessors;
 		std::map<std::string, MeshRef>                       mMeshes;
-		std::map<std::string, NodeRef>                       mNodes;
+		NodeMapRef												mNodes;
 		std::map<std::string, SceneRef>                      mScenes;
 		std::map<std::string, ShaderRef>                      mShaders;
 		std::map<std::string, ProgramRef>                      mPrograms;

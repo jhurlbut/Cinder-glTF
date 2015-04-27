@@ -45,6 +45,12 @@ namespace gltf {
 	typedef std::shared_ptr<class Mesh>		MeshRef;
 	class Node;
 	typedef std::shared_ptr<class Node>		NodeRef;
+
+
+	using NodeMap = std::map < std::string, NodeRef >;
+	using NodeMapRef = std::shared_ptr<NodeMap>;
+
+
 	class Node
 	{
 	public:

@@ -148,7 +148,7 @@ namespace cinder {
 			TechniqueRef pTechInstance;
 			// vector of Texture ref
 			std::vector<NameTexturePair> textures;
-			std::map<std::string, NodeRef> matrices;
+			NodeMapRef nodeMap;
 			int curLevel;
 			bool mUseTextures;
 			gl::GlslProgRef shader;
@@ -187,16 +187,15 @@ namespace cinder {
 						val4 = pTechnique->params[pair.first]->val;
 					}
 					
-					if (type == GL_FLOAT_MAT4)
-						node = matrices[pTechnique->params[pair.first]->matSource];
-				
-					/*if (pTechInstance->params[pair.first]){
-
-						val = pTechInstance->params[pair.first]->valF;
-						val4 = pTechInstance->params[pair.first]->val;
-						if (type == GL_FLOAT_MAT4)
-							node = matrices[pTechInstance->params[pair.first]->matSource];
-					}*/
+					if (type == GL_FLOAT_MAT4){
+						auto techniqueParam = pTechnique->params[pair.first];
+						auto itr = nodeMap->find(techniqueParam->matSource);
+						if (itr != nodeMap->end()){
+							node = nodeMap->at(techniqueParam->matSource);
+							shader->uniform(pair.second, node->matrix);
+						}
+						
+					}
 					std::string name = pair.second;
 					if (type == GL_FLOAT){
 						shader->uniform(pair.second, val);
@@ -210,17 +209,7 @@ namespace cinder {
 					if (type == GL_FLOAT_VEC2){
 						shader->uniform(pair.second, vec2(val4.x, val4.y));
 					}
-					if (type == GL_FLOAT_MAT4){
-							
-						if (node){
-							auto mat = node->matrix;
-							if (pair.second == "uModelInverseTransposeLightMatrix"){
-								mat = glm::inverseTranspose(mat);
-							}
-							shader->uniform(pair.second, mat);
-						}
-					}
-				
+					
 				}
 				//matrix xforms
 				/*int count = rotMats.size();
