@@ -391,8 +391,10 @@ namespace cinder {
 				}
 				catch (GlslProgExc err){
 
-					console() << "vert source: " << pp.parse(mShaders[pgm->vertShader]->data->getFilePath()).c_str() << endl;
-					console() << "frag source: " << pp.parse(mShaders[pgm->fragShader]->data->getFilePath()).c_str() << endl;
+					//console() << "vert source: " << pp.parse(mShaders[pgm->vertShader]->data->getFilePath()).c_str() << endl;
+					//console() << "frag source: " << pp.parse(mShaders[pgm->fragShader]->data->getFilePath()).c_str() << endl;
+					console() << "vert file: " << mShaders[pgm->vertShader]->data->getFilePath() << endl;
+					console() << "frag file: " << mShaders[pgm->fragShader]->data->getFilePath() << endl;
 					console() << "GLSL error what " << err.what() << endl;
 
 					exit(-1);
@@ -626,8 +628,11 @@ namespace cinder {
 		{
 			for (const JsonTree& nodejson : tree.getChildren()){
 				NodeRef node = Node::create();
-				node->name = nodejson.getKey();
-
+				if (nodejson.hasChild("name"))
+					node->name = nodejson["name"].getValue<std::string>();
+				else
+					node->name = nodejson.getKey();
+				node->key = nodejson.getKey();
 				for (const JsonTree& child : nodejson["children"].getChildren())
 				{
 					handleNode(child);
@@ -719,8 +724,9 @@ namespace cinder {
 					node->bounds = ci::AxisAlignedBox3f(vec3(0),vec3(0));
 
 				}
-				if (mNodes->find(node->name) == mNodes->end()){
-					mNodes->insert({ node->name, node });
+				if (mNodes->find(node->key) == mNodes->end()){
+					mNodes->insert({ node->key, node });
+					mNodeNameKeyMap.insert({ node->name, node->key });
 				}
 				{
 					console() << "dupe node found: " << node->name << endl;
