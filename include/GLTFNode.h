@@ -68,6 +68,7 @@ namespace gltf {
 		ci::mat4 rotmat;
 		ci::vec3 scale;
 		ci::mat4 matrix;
+		ci::vec4 worldPos;
 		std::string  name;
 		std::string key;
 		bool	visible;

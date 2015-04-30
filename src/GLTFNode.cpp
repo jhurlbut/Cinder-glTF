@@ -82,13 +82,14 @@ namespace cinder {
 							//ci::app::console() << (t1 - t0) * 1000 << " : "<< name << " : node draw time " << std::endl;
 
 						}
-
+						vec4 xform = getProjectionMatrix() * getViewMatrix() * getModelMatrix() * matrix * vec4(bounds.getCenter(), 1);
+						worldPos = xform;
 						std::vector<float> distances;
 						for (NodeRef pChild : pChildren)
 						{
 							vec4 start = vec4(1);
 							vec4 xform = getProjectionMatrix() * getViewMatrix() * getModelMatrix() * pChild->matrix * vec4(pChild->bounds.getCenter(), 1);
-							//gl::drawColorCube(vec3(xform.x, xform.y, xform.z), vec3(.1));
+							gl::drawColorCube(vec3(xform.x, xform.y, xform.z), vec3(2.1));
 							distances.push_back(xform.z);
 						}
 						vector<pair<size_t, myiter> > order(distances.size());
