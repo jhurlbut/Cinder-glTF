@@ -73,38 +73,38 @@ namespace cinder {
 					//gl::multModelMatrix(matrix);
 					//double t1 = ci::app::getElapsedSeconds();
 					//ci::app::console() << (t1 - t0) * 1000 << " : " << name << " : matrix node time " << std::endl;
-					if (visible){
-						for (MeshRef pMesh : pMeshes)
-						{
-							//double t0 = ci::app::getElapsedSeconds();
+					
+					for (MeshRef pMesh : pMeshes)
+					{
+						//double t0 = ci::app::getElapsedSeconds();
+						if (visible)
 							pMesh->draw(numInstances, rotMats, positions, scales);
-							//double t1 = ci::app::getElapsedSeconds();
-							//ci::app::console() << (t1 - t0) * 1000 << " : "<< name << " : node draw time " << std::endl;
+						//double t1 = ci::app::getElapsedSeconds();
+						//ci::app::console() << (t1 - t0) * 1000 << " : "<< name << " : node draw time " << std::endl;
 
-						}
-						vec4 xform = getProjectionMatrix() * getViewMatrix() * getModelMatrix() * matrix * vec4(bounds.getCenter(), 1);
-						worldPos = xform;
-						std::vector<float> distances;
-						for (NodeRef pChild : pChildren)
-						{
-							vec4 start = vec4(1);
-							vec4 xform = getProjectionMatrix() * getViewMatrix() * getModelMatrix() * pChild->matrix * vec4(pChild->bounds.getCenter(), 1);
-							gl::drawColorCube(vec3(xform.x, xform.y, xform.z), vec3(2.1));
-							distances.push_back(xform.z);
-						}
-						vector<pair<size_t, myiter> > order(distances.size());
-						size_t n = 0;
-						for (myiter it = distances.begin(); it != distances.end(); ++it, ++n)
-							order[n] = make_pair(n, it);
-
-						sort(order.begin(), order.end(), ordering());
-
-						//ci::app::console() << ":::::::::::" << endl;
-						for (auto pDrawOrder : order)
-						{
-							pChildren[pDrawOrder.first]->draw(true, numInstances, rotMats, positions, scales);
-						}
 					}
+					vec4 xform = getModelMatrix() * vec4(0, 0, 0, 1);
+					worldPos = xform;
+					std::vector<float> distances;
+					for (NodeRef pChild : pChildren)
+					{
+						vec4 start = vec4(1);
+						vec4 xform = getProjectionMatrix() * getViewMatrix() * getModelMatrix() * pChild->matrix * vec4(pChild->bounds.getCenter(), 1);
+						distances.push_back(xform.z);
+					}
+					vector<pair<size_t, myiter> > order(distances.size());
+					size_t n = 0;
+					for (myiter it = distances.begin(); it != distances.end(); ++it, ++n)
+						order[n] = make_pair(n, it);
+
+					sort(order.begin(), order.end(), ordering());
+
+					//ci::app::console() << ":::::::::::" << endl;
+					for (auto pDrawOrder : order)
+					{
+						pChildren[pDrawOrder.first]->draw(true, numInstances, rotMats, positions, scales);
+					}
+					
 					if (numInstances == 0){
 						gl::popModelView();
 					}
