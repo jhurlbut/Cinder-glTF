@@ -50,11 +50,21 @@ namespace cinder {
 		typedef std::map<std::string, GLenum> NameEnumMap;
 		class Param;
 		typedef std::shared_ptr<class Param>		ParamRef;
+		using ParamMap = std::map < std::string, ParamRef >;
+		using ParamMapRef = std::shared_ptr<ParamMap>;
+
 		class Param
 		{
 		public:
 			static ParamRef	create() { return ParamRef(new Param()); }
-			Param(){};
+			Param(){
+				val = ci::vec4(0.f, 0.f,0.f,0.f);
+				valF = 0.f;
+				valS = "";
+				matval = ci::mat4(1);
+				valueBool = false;
+				
+			};
 			GLint type;
 			int count;
 			bool valueBool;
@@ -99,12 +109,14 @@ namespace cinder {
 		{
 		public:
 			static TechniqueRef	create() { return TechniqueRef(new Technique()); }
-			Technique() : cullFaceEnable(false), blendEnable(true){};
+			Technique() : cullFaceEnable(false), blendEnable(true){
+				params = std::make_shared<ParamMap>();
+			};
 
 			InstanceProgramRef instanceProgram;
 			std::map<std::string, std::string> uniforms;
 			std::string name;
-			std::map<std::string, ParamRef> params;
+			ParamMapRef params;
 			bool blendEnable;
 			bool cullFaceEnable;
 			bool depthMask;
@@ -176,19 +188,19 @@ namespace cinder {
 					vec4 val4;
 					NodeRef node;
 					
-					type = pTechnique->params[pair.first]->type;
-					if (pTechInstance->params[pair.first]){
-						val = pTechInstance->params[pair.first]->valF;
-						val4 = pTechInstance->params[pair.first]->val;
-
+					type = pTechnique->params->at(pair.first)->type;
+					auto itr = pTechInstance->params->find(pair.first);
+					if (itr != pTechInstance->params->end()){
+						val = pTechInstance->params->at(pair.first)->valF;
+						val4 = pTechInstance->params->at(pair.first)->val;
 					}
 					else {
-						val = pTechnique->params[pair.first]->valF;
-						val4 = pTechnique->params[pair.first]->val;
+						val = pTechnique->params->at(pair.first)->valF;
+						val4 = pTechnique->params->at(pair.first)->val;
 					}
 					
 					if (type == GL_FLOAT_MAT4){
-						auto techniqueParam = pTechnique->params[pair.first];
+						auto techniqueParam = pTechnique->params->at(pair.first);
 						auto itr = nodeMap->find(techniqueParam->matSource);
 						if (itr != nodeMap->end()){
 							node = nodeMap->at(techniqueParam->matSource);

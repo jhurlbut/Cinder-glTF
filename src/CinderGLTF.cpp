@@ -449,9 +449,9 @@ namespace cinder {
 				for (auto parms : techjson["parameters"].getChildren()){
 					ParamRef param = Param::create();
 					param->type = parms["type"].getValue<GLint>();
-					//if (param->type == GL_FLOAT){
-					//	param->valF = parms["value"].getValue<float>();
-					//}
+					if (param->type == GL_FLOAT){
+						//param->valF = parms["value"].getValue<float>();
+					}
 					if (param->type == GL_FLOAT_MAT4){
 						if (parms.hasChild("source")){
 							//NodeRef node = mNodes[parms["source"].getValue<string>()];
@@ -481,7 +481,7 @@ namespace cinder {
 					if (parms.hasChild("semantic")){
 						param->semantic = parms["semantic"].getValue<string>();
 					}
-					tech->params[parms.getKey()] = param;
+					tech->params->insert({ parms.getKey(), param });
 				}
 
 
@@ -555,7 +555,15 @@ namespace cinder {
 					string key = value.getKey();
 
 					InstanceProgramRef ipg = material->pTechnique->instanceProgram;
-					auto prm = params[paramName];
+					auto prmIter = params->find(paramName);
+					ParamRef prm;
+					if (prmIter == params->end()){
+						params->insert({ paramName, param });
+						prm = param;
+					}
+					else {
+						prm = params->at(paramName);
+					}
 					if (prm->type == GL_FLOAT){
 						prm->valF = value.getValue<float>();
 						param->valF = value.getValue<float>();
@@ -616,7 +624,7 @@ namespace cinder {
 					}
 					//	continue;
 					//}
-					techniqueInstance->params[paramName] = param;
+					techniqueInstance->params->insert({ paramName, param });
 					// TODO: support more types
 
 				}
