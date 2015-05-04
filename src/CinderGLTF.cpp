@@ -450,7 +450,8 @@ namespace cinder {
 					ParamRef param = Param::create();
 					param->type = parms["type"].getValue<GLint>();
 					if (param->type == GL_FLOAT){
-						//param->valF = parms["value"].getValue<float>();
+						if (parms.hasChild("value"))
+							param->valF = parms["value"].getValue<float>();
 					}
 					if (param->type == GL_FLOAT_MAT4){
 						if (parms.hasChild("source")){
