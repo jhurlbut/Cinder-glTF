@@ -73,7 +73,7 @@ namespace gltf {
 		std::string key;
 		bool	visible;
 		std::vector<MeshRef> pMeshes;
-		ci::AxisAlignedBox3f bounds;
+		ci::AxisAlignedBox bounds;
 		void draw(bool child, int numInstances, std::vector<mat4> rotMats, std::vector<ci::mat4> positions, std::vector<ci::mat4> scales);
 	};
 

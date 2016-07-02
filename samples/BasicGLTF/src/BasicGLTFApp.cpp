@@ -40,7 +40,7 @@
 #include "cinder/gl/gl.h"
 #include "CinderGLTF.h"
 #include "cinder/Camera.h"
-#include "cinder/MayaCamUI.h"
+#include "cinder/CameraUI.h"
 
 #include "cinder/params/Params.h"
 #include "cinder/gl/VboMesh.h"
@@ -78,14 +78,14 @@ public:
     void setup() override;
     void mouseDown(MouseEvent event) override;
     void mouseDrag(MouseEvent event) override;
-    void keyDown(KeyEvent event);
+    void keyDown(KeyEvent event) override;
     void prepareSettings(Settings *settings);
     void update() override;
     void draw() override;
     LightData					mLight;
-    ci::gltf::CinderGLTFRef		gltfmesh;
+    gltf::CinderGLTFRef         gltfmesh;
     CameraPersp					mCamera;
-    MayaCamUI					mMayaCamera;
+    CameraUi					mMayaCamera;
     float						mTime;
     float						mDelta;
     float						mLastTime;
@@ -100,15 +100,15 @@ void BasicGLTFApp::prepareSettings(Settings *settings)
 void BasicGLTFApp::setup()
 {
     
-    auto model = loadAsset("models/duck/duck.gltf");
+    auto model = loadAsset("models/animation/animation.gltf");
     gltfmesh = gltf::CinderGLTF::create(model);
     // setup camera and lights
-    mCamera.setEyePoint(vec3(-1.25f, 0.3f, 0.0f));
-    mCamera.setCenterOfInterestPoint(vec3(0.0f, 0.3f, 0.f));
-    mCamera.setWorldUp(vec3(0, 1, 0));
+    mCamera.lookAt({10,10,10}, {0,0,0});
     mCamera.setNearClip(.1f);
     mCamera.setFarClip(100.0f);
     mCamera.setAspectRatio(getWindowAspectRatio());
+    
+    mMayaCamera = CameraUi(&mCamera);
     
     mTime = mDelta = mLastTime = 0.f;
     
@@ -116,7 +116,7 @@ void BasicGLTFApp::setup()
     
     //associate the transform matrices with the materials
     for (auto mat : gltfmesh->mMaterials){
-        mat.second->matrices = gltfmesh->mNodes;
+        mat.second->nodeMap = gltfmesh->mNodes;
     }
     
     mParams = params::InterfaceGl::create("CinderGLTF", ivec2(300, 400));
@@ -124,8 +124,10 @@ void BasicGLTFApp::setup()
     mParams->addText("Lights");
     
     mParams->addParam("Direct Light Color", &mLightColor).updateFn([&]{
-     gltfmesh->mTechniques["technique1"]->params["light0Color"]->val = vec4(mLightColor.r, mLightColor.g, mLightColor.b, 0.f);
-     });
+        auto tech = gltfmesh->mTechniques["technique1"];
+        gltf::ParamRef param = (*tech->params)["light0Color"];
+        param->val = {mLightColor.r, mLightColor.g, mLightColor.b, 0.f};
+    });
     
 }
 
@@ -136,7 +138,6 @@ void BasicGLTFApp::keyDown(KeyEvent event)
 
 void BasicGLTFApp::mouseDown(MouseEvent event)
 {
-    mMayaCamera.setCurrentCam(mCamera);
     mMayaCamera.mouseDown(event.getPos());
 }
 
@@ -162,7 +163,6 @@ void BasicGLTFApp::draw()
     
     gl::enableDepthRead();
     gl::enableDepthWrite();
-    gl::scale(vec3(.1f));
     try{
         gltfmesh->draw();
     }
