@@ -77,7 +77,7 @@ namespace cinder {
 			GLsizei stride;
 			vec3 min;
 			vec3 max;
-			ci::AxisAlignedBox3f mBox;
+			ci::AxisAlignedBox mBox;
 			const GLvoid* pointer;
 
 			const GLvoid* indices;

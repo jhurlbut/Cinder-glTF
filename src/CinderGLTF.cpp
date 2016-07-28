@@ -167,14 +167,14 @@ namespace cinder {
 		void CinderGLTF::update(float time){
 			// update our instance positions; map our instance data VBO, write new positions, unmap
 			if (mNumInstances > 0){
-				vec3 *positions = (vec3*)mInstancePosVbo->mapWriteOnly(true);
+				vec3 *positions = (vec3*)mInstancePosVbo->mapReplace();
 				for (size_t potX = 0; potX < mNumInstances; ++potX) {
 					vec3 newPos(instancePositions[potX]);
 					*positions++ = newPos;
 				}
 				mInstancePosVbo->unmap();
 
-				vec3 *scales = (vec3*)mInstanceScaleVbo->mapWriteOnly(true);
+				vec3 *scales = (vec3*)mInstanceScaleVbo->mapReplace();
 				for (size_t potX = 0; potX < mNumInstances; ++potX) {
 					vec3 newScale(instanceScales[potX]);
 					*scales++ = newScale;
@@ -262,7 +262,7 @@ namespace cinder {
 				if (acc.hasChild("min")){
 					auto maxvals = acc.getChild("min");
 					a->min = vec3(maxvals[0].getValue<float>(), maxvals[1].getValue<float>(), a->size == 3 ? maxvals[2].getValue<float>() : 0);
-					a->mBox = ci::AxisAlignedBox3f(a->min, a->max);
+					a->mBox = ci::AxisAlignedBox(a->min, a->max);
 				}
 				if (acc.hasChild("byteStride")){
 					a->stride = acc["byteStride"].getValue<GLsizei>();
@@ -275,8 +275,8 @@ namespace cinder {
 					int byteOffset = acc["byteOffset"].getValue<int>();
 					auto databuffer = datasrc->getBuffer();
 
-					size_t numElements = (databuffer.getDataSize()) / sizeof(float);
-					const float* pBuffer = reinterpret_cast<const float*>(databuffer.getData());
+					size_t numElements = (databuffer->getSize()) / sizeof(float);
+					const float* pBuffer = reinterpret_cast<const float*>(databuffer->getData());
 
 					std::vector<float> floatData;
 					for (size_t i = 0; i<a->count*a->size; ++i) {
@@ -344,7 +344,7 @@ namespace cinder {
 				auto pth = "models/" + buf.getKey() + "/" + path;
 				console() << "key " << buf.getKey() << endl;
 				DataSourceRef dataSrc = ci::app::loadAsset(pth);
-				if (dataSrc->getBuffer().getDataSize() != byteLength)
+				if (dataSrc->getBuffer()->getSize() != byteLength)
 				{
 					console() << buf.getKey() << ": byteLength mismatch." << endl;
 				}
@@ -719,18 +719,18 @@ namespace cinder {
 						for (auto buf : prim->pVertexBuffers){
 							if (buf.first == geom::Attrib::POSITION){
 								AccessorRef acc = buf.second;
-								ci::AxisAlignedBox3f bnds = acc->mBox;
+								ci::AxisAlignedBox bnds = acc->mBox;
 								node->bounds = bnds;
 								hasPosBuf = true;
 							}
 						}
 						if (hasPosBuf == false){
-							node->bounds = ci::AxisAlignedBox3f(vec3(0), vec3(0));
+							node->bounds = ci::AxisAlignedBox(vec3(0), vec3(0));
 						}
 					}
 				}
 				else {
-					node->bounds = ci::AxisAlignedBox3f(vec3(0),vec3(0));
+					node->bounds = ci::AxisAlignedBox(vec3(0),vec3(0));
 
 				}
 				if (mNodes->find(node->key) == mNodes->end()){
@@ -792,14 +792,14 @@ namespace cinder {
 				string bufferName = buf["buffer"].getValue();
 				DataSourceRef& dataSrc = mBuffers[bufferName];
 				bView->data = dataSrc;
-				const Buffer& buffer = dataSrc->getBuffer();
+				const BufferRef& buffer = dataSrc->getBuffer();
 
 				//VBO buffer
 				if (buf.hasChild("target")){
 					vbo = gl::Vbo::create(buf["target"].getValue<GLenum>());
 
 					//vbo->bind();
-					vbo->bufferData(byteLength, reinterpret_cast<const uint8_t*>(buffer.getData()) + byteOffset, GL_STATIC_DRAW);
+					vbo->bufferData(byteLength, reinterpret_cast<const uint8_t*>(buffer->getData()) + byteOffset, GL_STATIC_DRAW);
 					vbo->unbind();
 					bView->vbo = vbo;
 				}
